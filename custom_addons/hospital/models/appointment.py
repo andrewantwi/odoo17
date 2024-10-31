@@ -13,7 +13,7 @@ class HospitalAppointment(models.Model):
     note = fields.Text(string='Note')
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
                               ('ongoing', 'Ongoing'), ('done', 'Done'), ('canceled', 'Canceled')
-                              ], default='draft')
+                              ], default='draft', tracking=True)
 
     # Replacing the reference with a sequence generated number
     @api.model_create_multi
@@ -23,3 +23,19 @@ class HospitalAppointment(models.Model):
             if not vals.get('reference') or vals['reference'] == 'New':
                 vals['reference'] = self.env['ir.sequence'].next_by_code('hospital.appointment')
         return super().create(vals_list)
+
+    def action_confirm(self):
+        for rec in self:
+            rec.state = 'confirmed'
+
+    def action_ongoing(self):
+        for rec in self:
+            rec.state = 'ongoing'
+
+    def action_done(self):
+        for rec in self:
+            rec.state = 'done'
+
+    def action_cancel(self):
+        for rec in self:
+            rec.state = 'canceled'
