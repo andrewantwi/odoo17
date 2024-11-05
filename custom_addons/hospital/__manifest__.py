@@ -8,7 +8,7 @@
     'website': 'https://www.hospital_management.com',
     'category': 'Healthcare',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail','product'],
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',

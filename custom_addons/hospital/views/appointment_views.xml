@@ -38,6 +38,7 @@
                         </group>
 
                     </group>
+                    <field name="appointment_line_ids"/>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" groups="base.group_user"/>

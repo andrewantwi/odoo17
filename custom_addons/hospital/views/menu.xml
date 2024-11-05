@@ -4,6 +4,7 @@
     <menuitem id="menu_front_desk" name="Front desk" parent="menu_hospital_root"/>
     <menuitem id="readonly_patients" name="View Patients" parent="menu_front_desk" action="action_hospital_readonly_patient"/>
     <menuitem id="appointments" name="Appointments" parent="menu_front_desk" action="action_hospital_appointment"/>
+    <menuitem id="appointment_lines" name="Appointment Lines" parent="menu_front_desk" action="action_hospital_appointment_line"/>
     <menuitem id="menu_configuration" name="Configuration" parent="menu_hospital_root"/>
     <menuitem id="menu_patient_tag" name="Tags" parent="menu_configuration" action="action_patient_tag"/>
     <menuitem id="patients" name="Patients" parent="menu_front_desk" action="action_hospital_patient"/>

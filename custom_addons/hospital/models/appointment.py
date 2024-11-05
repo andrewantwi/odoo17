@@ -14,6 +14,7 @@ class HospitalAppointment(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('confirmed', 'Confirmed'),
                               ('ongoing', 'Ongoing'), ('done', 'Done'), ('canceled', 'Canceled')
                               ], default='draft', tracking=True)
+    appointment_line_ids = fields.One2many('hospital.appointment.line','appointment_id',string='Lines')
 
     # Replacing the reference with a sequence generated number
     @api.model_create_multi
@@ -47,5 +48,5 @@ class HospitalAppointmentLine(models.Model):
     _description = 'hospital appointment line'
 
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
-    product_id = fields.One2many('product.product', string='Product')
-
+    product_id = fields.Many2one('product.product', string='Product')
+    qty = fields.Float(string='Quantity')
