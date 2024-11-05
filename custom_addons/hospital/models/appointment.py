@@ -39,3 +39,13 @@ class HospitalAppointment(models.Model):
     def action_cancel(self):
         for rec in self:
             rec.state = 'canceled'
+
+
+
+class HospitalAppointmentLine(models.Model):
+    _name = 'hospital.appointment.line'
+    _description = 'hospital appointment line'
+
+    appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
+    product_id = fields.One2many('product.product', string='Product')
+

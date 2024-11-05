@@ -16,9 +16,10 @@
         'views/patient_views.xml',
         'views/patient_tag_views.xml',
         'views/appointment_views.xml',
+        'views/appointment_lines_views.xml',
         'views/menu.xml'
     ],
     'installable': True,
     'application': True,
-    'auto_install': True,  # Change to False unless this should auto-install with dependencies
+    'auto_install': True,
 }

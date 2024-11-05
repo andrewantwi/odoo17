@@ -6,3 +6,9 @@ class PatientTag(models.Model):
     _description = 'Patient Tag'
 
     name = fields.Char(string="Name", required=True)
+
+    sequence = fields.Integer("Sequence", default=10)
+
+
+
+
