@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-from odoo.api import ondelete
+# from odoo.api import ondelete
 
 
 class HospitalAppointment(models.Model):
