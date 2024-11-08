@@ -8,14 +8,14 @@
     'website': 'https://www.hospital_management.com',
     'category': 'Healthcare',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail','product'],
+    'depends': ['base', 'mail','product','account'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
         'data/sequence.xml',
         'views/patient_readonly_views.xml',
         'views/patient_views.xml',
-        'views/patient_tag_views.xml',
+        'views/patient_tag_views.xml','account'
         'views/appointment_views.xml',
         'views/appointment_lines_views.xml',
         'views/menu.xml'
