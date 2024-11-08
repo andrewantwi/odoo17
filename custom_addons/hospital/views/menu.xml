@@ -7,7 +7,7 @@
     <!-- Linking to an existing action in the Accounting module -->
     <menuitem id="menu_invoicing" name="Invoice" parent="menu_billing" action="account.action_move_out_invoice_type"/>
 
-    <menuitem id="menu_payment" name="Payment" parent="menu_billing"/>
+    <menuitem id="menu_payment" name="Payment" parent="menu_billing" action="account.action_account_payments"/>
 
     <menuitem id="readonly_patients" name="View Patients" parent="menu_front_desk" action="action_hospital_readonly_patient"/>
     <menuitem id="appointments" name="Appointments" parent="menu_front_desk" action="action_hospital_appointment"/>
