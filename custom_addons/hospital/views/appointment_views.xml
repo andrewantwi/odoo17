@@ -8,6 +8,7 @@
                 <field name="reference"/>
                 <field name="patient_id"/>
                 <field name="date_appointment"/>
+                <field name="doctor_id"/>
             </tree>
         </field>
     </record>

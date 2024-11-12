@@ -13,7 +13,6 @@
     </record>
 
 
-
     <record id="action_hospital_appointment_line" model="ir.actions.act_window">
         <field name="name">Appointment Line</field>
         <field name="res_model">hospital.appointment.line</field>
