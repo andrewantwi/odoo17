@@ -66,18 +66,6 @@ class Patient(models.Model):
                 )
         return super().unlink()
 
-    # Validation on Deletion (Alternative Method)
-    # @api.ondelete(at_uninstall=False)
-    # def _check_patient_appointments(self):
-    #     for rec in self:
-    #         print('This function is running', rec.name)
-    #         domain = [('patient_id', '=', rec.id)]
-    #         appointments = self.env['hospital.appointment'].search(domain)
-    #         if appointments:
-    #             raise ValidationError(
-    #                 'You cannot delete the patient "%s" because appointments exist.' % rec.name
-    #             )
-
 
 class PatientHistory(models.Model):
     _name = 'hospital.patient.history'
