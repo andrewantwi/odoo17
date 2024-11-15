@@ -1,9 +1,19 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hospital_patient,access_hospital_patient,model_hospital_patient,base.group_user,1,1,1,1
 access_hospital_appointment,access_hospital_appointment,model_hospital_appointment,base.group_user,1,1,1,1
+access_hospital_specialty,access_hospital_specialty,model_hospital_specialty,base.group_user,1,1,1,1
 access_hospital_appointment_line,access_hospital_appointment_line,model_hospital_appointment_line,base.group_user,1,1,1,1
 access_patient_tag,access_patient_tag,model_patient_tag,base.group_user,1,1,1,1
 hospital.access_hospital_doctor,access_hospital_doctor,hospital.model_hospital_doctor,base.group_user,1,1,1,1
 
 
 
+access_hospital_doctor_user,hospital.doctor.user,model_hospital_doctor,base.group_user,1,1,1,1
+access_hospital_specialty_user,hospital.specialty.user,model_hospital_specialty,base.group_user,1,1,1,1
+access_hospital_doctor_availability_user,hospital.doctor.availability.user,model_hospital_doctor_availability,base.group_user,1,1,1,1
+access_hospital_consultation_user,hospital.consultation.user,model_hospital_consultation,base.group_user,1,1,1,1
+
+access_hospital_doctor_manager,hospital.doctor.manager,model_hospital_doctor,base.group_system,1,1,1,1
+access_hospital_specialty_manager,hospital.specialty.manager,model_hospital_specialty,base.group_system,1,1,1,1
+access_hospital_doctor_availability_manager,hospital.doctor.availability.manager,model_hospital_doctor_availability,base.group_system,1,1,1,1
+access_hospital_consultation_manager,hospital.consultation.manager,model_hospital_consultation,base.group_system,1,1,1,1

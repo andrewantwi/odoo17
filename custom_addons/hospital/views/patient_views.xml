@@ -8,7 +8,6 @@
                 <field name="name" optional="show"/>
                 <field name="date_of_birth" optional="show"/>
                 <field name="gender" optional="hide"/>
-                 <field name="doctor_id"/>
             </tree>
         </field>
     </record>
@@ -24,16 +23,26 @@
                         <group>
                             <field name="name"/>
                             <field name="date_of_birth"/>
-                            <field name="medication"/>
                         </group>
                         <group>
                             <field name="gender"/>
                             <field name="tag_ids" widget="many2many_tags"/>
-                            <field name="symptoms"/>
-                             <field name="doctor_id" editable="1"/>
                         </group>
 
                     </group>
+                    <notebook>
+                        <page name="Patient History">
+                                <field name="consultation_ids">
+                                    <tree>
+                                        <field name="consultation_date" string="Consultation Date"/>
+                                        <field name="doctor_id" string="Doctor"/>
+                                        <field name="diagnosis" string="Diagnosis"/>
+                                        <field name="treatment" string="Treatment"/>
+                                        <field name="follow_up_date" string="Follow-up Date"/>
+                                    </tree>
+                                </field>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" groups="base.group_user"/>

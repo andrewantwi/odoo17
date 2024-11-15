@@ -7,36 +7,85 @@ class Patient(models.Model):
     _inherit = ['mail.thread']
     _description = 'Patient'
 
-    name = fields.Char(string="Name", required=True, tracking=True)
-    date_of_birth = fields.Date(string='DOB', tracking=True)
-    gender = fields.Selection([('Male', 'male'), ('Female', 'female')], tracking=True)
-    tag_ids = fields.Many2many('patient.tag', 'patient_tag_rel', 'patient_tag_id', 'tag_id', string="Tags")
-    doctor_id = fields.Many2one('hospital.doctor', string='Doctor')  # Inverse field for Doctor model
-    symptoms = fields.Char(string='Symptoms')
-    medication = fields.Char(string='Medication')
+    # Core Fields
+    name = fields.Char(
+        string="Name",
+        required=True,
+        tracking=True,
+        help="The full name of the patient."
+    )
+    date_of_birth = fields.Date(
+        string='Date of Birth',
+        tracking=True,
+        help="The patient's date of birth."
+    )
+    gender = fields.Selection(
+        [('Male', 'Male'), ('Female', 'Female')],
+        tracking=True,
+        help="The patient's gender."
+    )
+    contact_info = fields.Char(
+        string='Contact Information',
+        tracking=True,
+        help="The patient's phone number or email address."
+    )
 
+    # Tagging and Relationships
+    tag_ids = fields.Many2many(
+        'patient.tag',
+        'patient_tag_rel',
+        'patient_tag_id',
+        'tag_id',
+        string="Tags",
+        help="Tags to classify patients (e.g., VIP, Chronic)."
+    )
+    consultation_ids = fields.One2many(
+        'hospital.consultation',
+        'patient_id',
+        string='Consultations',
+        help="List of consultations associated with the patient."
+    )
 
-    # function that runs when you try to delete a record in this model
+    # State for Kanban View
+    kanban_state = fields.Selection(
+        [('normal', 'Normal'), ('blocked', 'Blocked')],
+        default='normal',
+        string="Kanban State",
+        help="Use this field to visually track patient status in Kanban view."
+    )
+
+    # Override Unlink Method
     def unlink(self):
         for rec in self:
             print('This function is running', rec.name)
             domain = [('patient_id', '=', rec.id)]
             appointments = self.env['hospital.appointment'].search(domain)
             if appointments:
-                # UserError can also be used instead of ValidationError
                 raise ValidationError(
-                    'You cannot delete the patients now,\n Appointments exist for patient:%s' % rec.name)
+                    'You cannot delete the patient "%s" because appointments exist.' % rec.name
+                )
         return super().unlink()
 
-# Different way of running a function when something is deleted
+    # Validation on Deletion (Alternative Method)
+    # @api.ondelete(at_uninstall=False)
+    # def _check_patient_appointments(self):
+    #     for rec in self:
+    #         print('This function is running', rec.name)
+    #         domain = [('patient_id', '=', rec.id)]
+    #         appointments = self.env['hospital.appointment'].search(domain)
+    #         if appointments:
+    #             raise ValidationError(
+    #                 'You cannot delete the patient "%s" because appointments exist.' % rec.name
+    #             )
 
-# @api.ondelete(at_uninstall=False)
-# def _check_patient_appointments(self):
-#     for rec in self:
-#         print('This function is running', rec.name)
-#         domain = [('patient_id', '=', rec.id)]
-#         appointments = self.env['hospital.appointment'].search(domain)
-#         if appointments:
-#             # UserError can also be used instead of ValidationError
-#             raise ValidationError('You cannot delete the patients now,\n Appointments exist for patient:%s' % rec.name)
-#
+
+class PatientHistory(models.Model):
+    _name = 'hospital.patient.history'
+    _description = 'Patient History'
+
+    patient_id = fields.Many2one(
+        'hospital.patient',
+        string='Patient',
+        required=True,
+        help="The patient this history record belongs to."
+    )
