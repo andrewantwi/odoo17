@@ -50,7 +50,7 @@ class Patient(models.Model):
     kanban_state = fields.Selection(
         [('normal', 'Normal'), ('blocked', 'Blocked')],
         default='normal',
-        string="Kanban State",
+        string="Kanban",
         help="Use this field to visually track patient status in Kanban view."
     )
 
